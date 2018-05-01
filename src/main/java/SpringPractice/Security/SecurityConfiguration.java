@@ -54,10 +54,12 @@ public class SecurityConfiguration {
     }
 
     // TODO: create custom login and logout page.
+
     @Bean
     SecurityWebFilterChain springSecurityWebFilterChain(ServerHttpSecurity http) {
         return http.authorizeExchange().
                 pathMatchers("/news").permitAll().
+                pathMatchers("/news2","/html/**").permitAll().
                 pathMatchers("/user/{username}").access((mono,context)->
                                 mono.map(auth->auth.getName().equals(context.getVariables().get("username"))).
                                 map(AuthorizationDecision::new)).

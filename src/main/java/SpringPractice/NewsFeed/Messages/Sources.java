@@ -1,16 +1,17 @@
 package SpringPractice.NewsFeed.Messages;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.net.URL;
+import java.util.List;
 
 @Data
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class ExtendedSource extends Source {
-    String description;
-    URL url;
-    String category;
-    String language;
-    String country;
+public class Sources{
+
+    public String status;
+    public List<Source> sources;
 }
+

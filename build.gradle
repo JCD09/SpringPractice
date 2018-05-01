@@ -30,6 +30,8 @@ dependencies {
 	testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.0.4.RELEASE'
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.1.RELEASE'
 
+	compile group: 'com.github.eirslett', name: 'frontend-maven-plugin', version: '1.6'
+
 	//compile('org.springframework.boot:spring-boot-starter')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.0.1.RELEASE'
 
@@ -38,6 +40,8 @@ dependencies {
 	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.4.RELEASE'
 	compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.4.RELEASE'
 	compile group: 'org.springframework.security', name: 'spring-security-webflux', version: '5.0.0.M5'
+
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 
 
 }

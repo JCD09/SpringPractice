@@ -1,5 +1,6 @@
 package SpringPractice.Handlers;
 
+import SpringPractice.NewsFeed.Messages.Sources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,17 +29,22 @@ public class Handler {
     private String API_KEY="X-Api-Key";
     private String API="43a167ad5e5943c386c72685062b81c8";
 
+    public Mono<ServerResponse> helloWorldHTML(ServerRequest serverRequest){
+        return ServerResponse.ok().render("../html/Base",new HashMap<>());
+    }
+
+
+
     public Mono<ServerResponse> newsSources(ServerRequest serverRequest){
 
-        WebClient webClient= WebClient.create();
+        WebClient webClient= WebClient.create(NEWS_SOURCES);
 
         System.out.println("NEWS API CA:: OCCURED \n");
 
         return webClient.
                 get().header(API_KEY,API).exchange().
                 flatMap(clientResponse ->
-                        ServerResponse.ok().body(clientResponse.bodyToMono(String.class),String.class));
-
+                        ServerResponse.ok().body(clientResponse.bodyToMono(Sources.class),Sources.class));
     }
 
     public Mono<ServerResponse> DisplaySession(ServerRequest serverRequest){
