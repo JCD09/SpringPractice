@@ -12,6 +12,6 @@ import java.util.List;
 public class Sources{
 
     public String status;
-    public List<Source> sources;
+    public List<ExtendedSource> sources;
 }
 

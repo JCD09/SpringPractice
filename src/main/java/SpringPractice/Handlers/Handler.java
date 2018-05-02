@@ -1,6 +1,7 @@
 package SpringPractice.Handlers;
 
 import SpringPractice.NewsFeed.Messages.Sources;
+import SpringPractice.NewsFeed.NewsWebClient.NewsWebClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,6 +28,9 @@ import java.util.Map;
 @Component
 public class Handler {
 
+    @Autowired
+    NewsWebClient newsWebClient;
+
     private String NEWS_SOURCES="https://newsapi.org/v2/sources";
     private String API_KEY="X-Api-Key";
     private String API="43a167ad5e5943c386c72685062b81c8";
@@ -41,11 +47,16 @@ public class Handler {
 
         System.out.println("NEWS API CA:: OCCURED \n");
 
-        return webClient.
-                get().header(API_KEY,API).exchange().
+        MultiValueMap<String,String> map =
+        new LinkedMultiValueMap<>();
+
+        return newsWebClient.getSources(map).
                 flatMap(clientResponse ->
-                        ServerResponse.ok().body(clientResponse.bodyToMono(Sources.class),Sources.class));
+                        ServerResponse.ok().body(clientResponse.bodyToMono(String.class),String.class));
     }
+
+
+
 
     public Mono<ServerResponse> DisplaySession(ServerRequest serverRequest){
         return ServerResponse.

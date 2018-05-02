@@ -60,6 +60,7 @@ public class SecurityConfiguration {
         return http.authorizeExchange().
                 pathMatchers("/news").permitAll().
                 pathMatchers("/news2","/html/**").permitAll().
+                pathMatchers("/news3").permitAll().
                 pathMatchers("/user/{username}").access((mono,context)->
                                 mono.map(auth->auth.getName().equals(context.getVariables().get("username"))).
                                 map(AuthorizationDecision::new)).

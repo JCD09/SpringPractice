@@ -27,12 +27,24 @@ public class Routes{
                     andNest(path("/session"),route(method(GET),handler::DisplaySession)).
                     andNest(path("/user"),route(method(GET),handler::redirect)).
 
+
                     andNest(path("/news"),route(method(GET), handler::newsSources)).
+
 
                     andNest(path("/news2"),route(method(GET),handler::helloWorldHTML)).
 
+
+
                     andRoute(path("/").and(method(GET)),handler::redirect)
                     .and(resources("/**", new ClassPathResource("/")));
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> newsRoute(Handler handler){
+
+        return
+                nest(path("/news3"),route(method(GET), handler::newsSources)).
+                andNest(path("/news4"),route(method(GET),handler::helloWorldHTML));
     }
 
 }
