@@ -33,8 +33,6 @@ public class Routes{
 
                     andNest(path("/news2"),route(method(GET),handler::helloWorldHTML)).
 
-
-
                     andRoute(path("/").and(method(GET)),handler::redirect)
                     .and(resources("/**", new ClassPathResource("/")));
     }

@@ -36,7 +36,9 @@ public class Handler {
     private String API="43a167ad5e5943c386c72685062b81c8";
 
     public Mono<ServerResponse> helloWorldHTML(ServerRequest serverRequest){
-        return ServerResponse.ok().render("../html/Base",new HashMap<>());
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current dir using System:" +currentDir);
+        return ServerResponse.ok().render("../html/Sources",new HashMap<>());
     }
 
 
