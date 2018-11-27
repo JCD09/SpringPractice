@@ -27,9 +27,7 @@ public class Routes{
                     andNest(path("/session"),route(method(GET),handler::DisplaySession)).
                     andNest(path("/user"),route(method(GET),handler::redirect)).
 
-
                     andNest(path("/news"),route(method(GET), handler::newsSources)).
-
 
                     andNest(path("/news2"),route(method(GET),handler::helloWorldHTML)).
 

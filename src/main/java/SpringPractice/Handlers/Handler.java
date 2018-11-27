@@ -47,10 +47,9 @@ public class Handler {
 
         WebClient webClient= WebClient.create(NEWS_SOURCES);
 
-        System.out.println("NEWS API CA:: OCCURED \n");
+        //System.out.println("NEWS API CA:: OCCURED \n");
 
-        MultiValueMap<String,String> map =
-        new LinkedMultiValueMap<>();
+        MultiValueMap<String,String> map = new LinkedMultiValueMap<>();
 
         return newsWebClient.getSources(map).
                 flatMap(clientResponse ->
